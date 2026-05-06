@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tervetuloa Koukkuun</title>
+  <style>
+    :root {
+      --koukku-teal: #1f7d6e;
+      --koukku-dark: #1f313f;
+      --koukku-light: #f5f9f8;
+      --text: #1a2530;
+      --subtle: #5a6872;
+      --border: #d0dce0;
+      --max: 680px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--koukku-light);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 0 0 60px;
+    }
+
+    /* ── Header ─────────────────────────────────────────────────────── */
+    header {
+      background: var(--koukku-dark);
+      padding: 28px 24px 24px;
+      text-align: center;
+    }
+    header .wordmark {
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 3px;
+    }
+    header .tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--koukku-teal) 0%, #14c4a2 100%);
+      padding: 32px 24px;
+      text-align: center;
+      color: white;
+    }
+    .hero p {
+      max-width: var(--max);
+      margin: 0 auto;
+      font-size: 15px;
+      opacity: 0.95;
+    }
+    .hero strong { font-weight: 700; }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    /* ── Main content ────────────────────────────────────────────────── */
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section { margin-top: 36px; }
+
+    h2 {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--koukku-teal);
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--koukku-teal);
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--koukku-dark);
+      margin: 20px 0 6px;
+    }
+
+    p { margin-bottom: 10px; font-size: 15px; }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+    li { margin-bottom: 6px; font-size: 15px; }
+
+    /* ── Feature cards ───────────────────────────────────────────────── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    @media (max-width: 480px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .feature-card .icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .feature-card .label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--koukku-dark);
+    }
+    .feature-card .desc {
+      font-size: 12px;
+      color: var(--subtle);
+      margin-top: 3px;
+      line-height: 1.45;
+    }
+
+    /* ── Callout box ─────────────────────────────────────────────────── */
+    .callout {
+      background: white;
+      border-left: 4px solid var(--koukku-teal);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+    .callout strong { color: var(--koukku-teal); }
+
+    /* ── Privacy table ───────────────────────────────────────────────── */
+    .privacy-row {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .privacy-row:last-child { border-bottom: none; }
+    .privacy-icon { font-size: 18px; flex-shrink: 0; width: 28px; }
+    .privacy-text strong { display: block; font-size: 14px; color: var(--koukku-dark); }
+    .privacy-text span { color: var(--subtle); font-size: 13px; }
+
+    /* ── Values table ────────────────────────────────────────────────── */
+    .values-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+    .values-table th {
+      background: var(--koukku-dark);
+      color: white;
+      text-align: left;
+      padding: 8px 12px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+    .values-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .values-table tr:last-child td { border-bottom: none; }
+    .values-table td:first-child { font-weight: 700; white-space: nowrap; }
+
+    /* ── Proprietary badge ───────────────────────────────────────────── */
+    .prop-badge {
+      display: inline-block;
+      background: var(--koukku-teal);
+      color: white;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      border-radius: 4px;
+      padding: 2px 5px;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────────── */
+    footer {
+      margin-top: 52px;
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--subtle);
+    }
+    footer strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wordmark">KOUKKU</div>
+  <div class="tagline">koukku.app · CodeHan Oy (Caphan Oy) · Finland</div>
+</header>
+
+<div class="hero">
+  <div class="badge">BETA — EARLY TESTER GUIDE</div>
+  <p>Welcome. This page explains what Koukku is for, how we think about your data, and what makes the app different. It's linked from the app so you can return anytime.</p>
+</div>
+
+<main>
+
+  <!-- ── 1. What Koukku is ─────────────────────────────────────── -->
+  <section>
+    <h2>1. What Koukku is</h2>
+    <p>Koukku is a <strong>fishing companion</strong> that helps you:</p>
+    <ul>
+      <li><strong>Log catches</strong> quickly (photo, a few taps, optional voice) and keep a private diary that works <strong>offline first</strong>.</li>
+      <li><strong>Log honest "no catch" outcomes</strong> as first-class events — not as a failure, but as signal. That pattern is central to how Koukku thinks about learning.</li>
+      <li><strong>See your fishing on a map</strong> (spots, sessions, competitions) with privacy controls you choose.</li>
+      <li><strong>Join competitions</strong> with clear rules and standings.</li>
+      <li><strong>Learn and improve</strong> through feedback and — when you choose to share — anonymous comparison with other anglers.</li>
+    </ul>
+    <div class="callout">
+      We optimise for <strong>ease of use</strong>, <strong>fun</strong>, and <strong>learning</strong> as the three everyday cornerstones: approachable on the boat, rewarding after a trip, honest about helping you improve without turning fishing into homework.
+    </div>
+  </section>
+
+  <!-- ── 2. Special features ────────────────────────────────────── -->
+  <section>
+    <h2>2. Special features</h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📵</div>
+        <div class="label">Offline-first</div>
+        <div class="desc">Catches saved to device first. The cloud is backup, not a gate.</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎣</div>
+        <div class="label">No-catch logging</div>
+        <div class="desc">Blank days are real outcomes worth recording — often more valuable for learning than the fish.</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🌦️</div>
+        <div class="label">WSI <span class="prop-badge">PROPRIETARY</span></div>
+        <div class="desc">Weather Similarity Index — compares your situation to past outcomes by current conditions.</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⭐</div>
+        <div class="label">XP points</div>
+        <div class="desc">Reward activity, honest logging, and good habits — not just trophy fish.</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🏆</div>
+        <div class="label">Skill score <span class="prop-badge">PROPRIETARY</span></div>
+        <div class="desc">Black-box algorithm: rewards actual fishing skill over luck. Formula stays internal by design.</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🗺️</div>
+        <div class="label">Privacy-aware map</div>
+        <div class="desc">You control how precisely your locations and catches appear to others.</div>
+      </div>
+    </div>
+
+    <h3>Active session — the main "sharing is off" switch</h3>
+    <p>When your active fishing session is <strong>off, nothing is shared</strong> from that session pipeline — no live position updates, no trail or area registration, no "where are they now" signal. Turn the session <strong>on</strong> when you are on the water; <strong>off</strong> when you are done.</p>
+
+    <h3>No-catch logging in depth</h3>
+    <p>Many apps only celebrate the big fish photo. Koukku treats a blank day as a real outcome — because selection bias disappears only if you also study the days you fail. The map and journal reflect <strong>effort and conditions</strong>, not only trophies. If you use nothing else in beta, try <strong>no-catch logging</strong> and tell us whether it feels fast and worth the tap.</p>
+
+    <h3>WSI — Weather Similarity Index <span class="prop-badge">PROPRIETARY</span></h3>
+    <p>WSI compares your current situation to past outcomes under similar weather conditions — not just "it is windy", but a structured similarity signal used for context-aware hints. Exact formulas stay internal so the signal stays fair and hard to game.</p>
+
+    <h3>XP and Skill score</h3>
+    <p><strong>XP</strong> ≈ engagement and richness of your diary. <strong>Skill</strong> ≈ how well you fish relative to difficulty. The best anglers often shine when it gets tough and others blank — Skill score moves in that direction over time. The exact Skill formula is intentionally not public.</p>
+  </section>
+
+  <!-- ── 3. Federated learning ──────────────────────────────────── -->
+  <section>
+    <h2>3. Federated learning and "data over ego"</h2>
+    <p><em>Federated here means: your device and your choices stay in charge; the cloud learns from patterns many users contribute, not from exposing every individual secret.</em></p>
+    <ul>
+      <li>Optional peer comparison is built on <strong>aggregates</strong>, not on publishing your exact spots to strangers.</li>
+      <li>Shared insights use <strong>k-anonymity</strong>: we only show cohort-level data when enough distinct users have opted in.</li>
+      <li>Location for analytics is <strong>obfuscated</strong> (grid-based or fuzzy) — your "honey hole" coordinates are not broadcast.</li>
+    </ul>
+    <div class="callout">
+      <strong>The deal:</strong> if you want the benefit of seeing how you compare, you contribute on fair terms. If you opt out, we don't use your data for those aggregates — and you won't see others' comparisons either. Same rules for everyone.
+    </div>
+  </section>
+
+  <!-- ── 4. Data collected ───────────────────────────────────────── -->
+  <section>
+    <h2>4. What data is collected — and what is not</h2>
+
+    <div class="privacy-row">
+      <div class="privacy-icon">✅</div>
+      <div class="privacy-text">
+        <strong>Account and profile</strong>
+        <span>Identifiers for login, display name, preferences you save.</span>
+      </div>
+    </div>
+    <div class="privacy-row">
+      <div class="privacy-icon">✅</div>
+      <div class="privacy-text">
+        <strong>Catch and session content you create</strong>
+        <span>Species, measurements, notes, photos, timestamps, and location as you choose to store and sync.</span>
+      </div>
+    </div>
+    <div class="privacy-row">
+      <div class="privacy-icon">⏱️</div>
+      <div class="privacy-text">
+        <strong>Session-gated signals — only while session is ON</strong>
+        <span>Live location and session-derived activity. With the session off, these signals are not sent.</span>
+      </div>
+    </div>
+    <div class="privacy-row">
+      <div class="privacy-icon">🛠️</div>
+      <div class="privacy-text">
+        <strong>Technical / diagnostics</strong>
+        <span>Crash information and diagnostics where enabled, to fix bugs and improve stability.</span>
+      </div>
+    </div>
+
+    <h3>What we do NOT do by design</h3>
+    <ul>
+      <li>We do <strong>not</strong> keep session-based live sharing running when your session is off.</li>
+      <li>We do <strong>not</strong> sell your catch diary to third parties.</li>
+      <li>We do <strong>not</strong> treat opting in to aggregates as permission to publish your exact spots.</li>
+      <li>We do <strong>not</strong> require you to stay online to log a catch.</li>
+    </ul>
+  </section>
+
+  <!-- ── 5. Values ──────────────────────────────────────────────── -->
+  <section>
+    <h2>5. Values and product choices</h2>
+    <table class="values-table">
+      <thead>
+        <tr><th>Value</th><th>What it means</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Respect</td>
+          <td>GDPR-minded defaults, clear toggles, no surprise location broadcasting. Session-gated features stay quiet when your fishing session is off.</td>
+        </tr>
+        <tr>
+          <td>Fun</td>
+          <td>Gamification and maps that reward logging without shame for blank days.</td>
+        </tr>
+        <tr>
+          <td>Learning</td>
+          <td>Honest logging (including no-catch), WSI-aware comparisons, XP for good habits, and Skill for sustained quality.</td>
+        </tr>
+        <tr>
+          <td>FinOps</td>
+          <td>Fewer naive cloud calls and batching so the product stays viable long term.</td>
+        </tr>
+        <tr>
+          <td>Honesty</td>
+          <td>Beta means rough edges. We prefer clear limits over fake polish.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── 6. How to be a great tester ──────────────────────────── -->
+  <section>
+    <h2>6. How to be a great test user</h2>
+    <ul>
+      <li>Use the app <strong>as you really fish</strong> — offline moments included.</li>
+      <li>When something confuses you, note <strong>which screen</strong> and what you expected vs. what happened.</li>
+      <li>When something feels <strong>wrong for privacy</strong>, tell us immediately — that is as important as a crash report.</li>
+    </ul>
+    <p>Feedback channels will be linked from the build you receive.</p>
+  </section>
+
+</main>
+
+<footer>
+  <strong>KOUKKU.app</strong> — developed by <strong>CodeHan Oy</strong> (Caphan Oy), Finland<br />
+  This page is for beta testers. It is not linked from the public website.
+</footer>
+
+</body>
+</html>
