@@ -224,7 +224,7 @@
 
 <div class="hero">
   <div class="badge">BETA — EARLY TESTER GUIDE</div>
-  <p>Welcome. This page explains what Koukku is for, how we think about your data, and what makes the app different. It's linked from the app so you can return anytime.</p>
+  <p>Welcome, and thank you for being one of the first people to fish with Koukku. You are helping shape a product built around <strong>honest data</strong>, <strong>real conditions</strong>, and <strong>learning that actually transfers to the water</strong>. This page explains what Koukku is, how we handle your data, and what makes it different. It's linked from the app so you can return anytime.</p>
 </div>
 
 <main>
@@ -280,6 +280,16 @@
         <div class="label">Privacy-aware map</div>
         <div class="desc">You control how precisely your locations and catches appear to others.</div>
       </div>
+      <div class="feature-card">
+        <div class="icon">🌡️</div>
+        <div class="label">Water temperature</div>
+        <div class="desc">Log surface water temp per catch (≈ estimate or = exact sonar reading). Your readings stay private; the app uses community medians as an anonymous area baseline.</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🌱</div>
+        <div class="label">Phenology &amp; local patterns</div>
+        <div class="desc">Koukku tracks how far ahead or behind a typical season each area is — thermal energy, ice-out timing, spring warming — so hints adapt to the actual year, not calendar dates.</div>
+      </div>
     </div>
 
     <h3>Active session — the main "sharing is off" switch</h3>
@@ -293,6 +303,27 @@
 
     <h3>XP and Skill score</h3>
     <p><strong>XP</strong> ≈ engagement and richness of your diary. <strong>Skill</strong> ≈ how well you fish relative to difficulty. The best anglers often shine when it gets tough and others blank — Skill score moves in that direction over time. The exact Skill formula is intentionally not public.</p>
+
+    <h3>Water temperature — your personal warm-spot memory</h3>
+    <p>Water temperature is the single most predictive environmental variable for predator behaviour (pike, zander, perch follow warm edges in spring and avoid cold stratified layers in summer). Koukku now lets you log surface temperature alongside every catch — either a quick <strong>≈ estimate</strong> (by feel or a basic thermometer) or an <strong>= exact</strong> reading from a sonar or digital probe.</p>
+    <ul>
+      <li>Your own readings stay <strong>private</strong>: only you see your spot-level temperatures. Koukku never reveals your warm-spot discoveries to other anglers.</li>
+      <li>Readings contribute to an <strong>anonymous 2 km area baseline</strong> (median, minimum 2 distinct contributors) used to calibrate the AI hint engine for the whole area — without exposing your exact location.</li>
+      <li>If you have a sonar or digital probe, switching to the <strong>= mode</strong> once is remembered. Your high-precision readings become anchor points for the warm-spot engine that will improve AI hints for everyone over time.</li>
+      <li>The app offers a <strong>pre-fill suggestion</strong> per catch: your own last reading at that spot first, then the area baseline if available, then an offline estimate from the cached weather data — so you never start from zero.</li>
+    </ul>
+
+    <h3>Phenology &amp; local temperature patterns</h3>
+    <p>Finnish seasons vary dramatically year to year. A calendar date like "15 May" can mean open ice-free water, a late-winter lake still warming, or a summer-warm shallow — depending on the year. Koukku tracks <strong>phenology</strong> per fishing area: how many days ahead or behind the 2014–2023 baseline the accumulated thermal energy is right now.</p>
+    <ul>
+      <li><strong>Morning AI analysis</strong> cites phenology: "this area is 12 days ahead of the typical season — expect pike moving to spawning shallows 1–2 weeks earlier than normal."</li>
+      <li>AI hints and WSI comparisons are calibrated against the <strong>actual seasonal state</strong>, not the calendar date — so a warm April and a cold May get correctly different recommendations.</li>
+      <li>Per-area <strong>climate normals</strong> (p10 / median / p90) are computed from 10 years of reanalysis data. The app knows what "normal" looks like for your specific water body, not just Finland in general.</li>
+      <li>The phenology layer is a <strong>server-side data substrate</strong> — it works automatically in the background. You do not need to configure anything; the app reads the right calibration for your area.</li>
+    </ul>
+    <div class="callout">
+      <strong>Together, water temperature logging and phenology calibration let Koukku reason about where predator fish are likely to be right now</strong> — not based on generic seasonal advice, but on what the thermal conditions in your specific area actually look like this year.
+    </div>
   </section>
 
   <!-- ── 3. Federated learning ──────────────────────────────────── -->
