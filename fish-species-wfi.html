@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://captainkoukku.github.io/koukku-pages/fish-species-wfi.html" />
+  <title>KOUKKU — Fish species &amp; weather sensitivity (WFI profiles)</title>
+  <style>
+    :root {
+      --ink: #1a2332;
+      --muted: #4a5568;
+      --accent: #2c5282;
+      --bg: #f7f9fc;
+      --card: #fff;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      margin: 0;
+      padding: 0 1.25rem 3rem;
+      font-size: 1.05rem;
+    }
+    header {
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 { font-size: 1.75rem; margin: 0 0 0.5rem; font-weight: 600; }
+    header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    header a { color: var(--accent); }
+    .toc {
+      max-width: 52rem;
+      margin: 1.5rem auto;
+      padding: 1rem 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    .toc h2 { font-size: 1rem; margin: 0 0 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .toc ul { margin: 0; padding-left: 1.25rem; columns: 2; column-gap: 2rem; }
+    .toc a { color: var(--accent); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .toc .fi { color: var(--muted); font-size: 0.85em; }
+    .species h2 .fi {
+      font-size: 0.72em;
+      font-weight: 400;
+      color: var(--muted);
+      font-style: normal;
+    }
+    .species {
+      max-width: 52rem;
+      margin: 2.5rem auto;
+      min-height: 50vh;
+      padding: 1.75rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: minmax(140px, 220px) 1fr;
+      gap: 1.5rem 2rem;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .species { grid-template-columns: 1fr; min-height: auto; }
+      .toc ul { columns: 1; }
+    }
+    .species h2 {
+      grid-column: 1 / -1;
+      margin: 0;
+      font-size: 1.45rem;
+      font-weight: 600;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.35rem;
+    }
+    .species .sci {
+      grid-column: 1 / -1;
+      margin: -0.25rem 0 0;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .species .links {
+      grid-column: 1 / -1;
+      font-size: 0.9rem;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1rem;
+      align-items: baseline;
+    }
+    .species .links a { color: var(--accent); }
+    .species .links-note {
+      grid-column: 1 / -1;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin: 0.35rem 0 0;
+      font-style: italic;
+    }
+    .species figure {
+      margin: 0;
+      text-align: center;
+    }
+    .species figure img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+    }
+    .species figcaption {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+    .no-img {
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #edf2f7;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 1rem;
+      text-align: center;
+    }
+    .species .body { margin: 0; }
+    .species .body h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 1.25rem 0 0.35rem;
+      font-weight: 600;
+    }
+    .species .body h3:first-child { margin-top: 0; }
+    .species .body p { margin: 0 0 0.65rem; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: #ebf4ff;
+      color: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-right: 0.35rem;
+      margin-bottom: 0.35rem;
+      font-family: system-ui, sans-serif;
+    }
+    footer {
+      max-width: 52rem;
+      margin: 2rem auto 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    @media print {
+      body { background: #fff; font-size: 11pt; }
+      .species { page-break-after: always; min-height: auto; box-shadow: none; }
+      .species:last-of-type { page-break-after: auto; }
+      .toc { break-after: page; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Fish species: biology and weather sensitivity</h1>
+  <p>
+    This reader is based on the literature-backed comments in the KOUKKU app’s
+    <code>lib/data/wfi_profiles.dart</code>, which define per-species weights and response curves for the
+    <strong>Weather Favourability Index (WFI)</strong>.
+    Illustrations come from <code>assets/images/fish/</code> in this repo; the
+    <a href="https://github.com/captainKoukku/KoukkuApp/blob/main/lib/shared/fish_species_image.dart" target="_blank" rel="noopener"><code>fish_species_image.dart</code></a> module maps species id → asset filename.
+    External links follow
+    <a href="https://github.com/captainKoukku/KoukkuApp/blob/main/assets/data/species_external_links.json" target="_blank" rel="noopener"><code>assets/data/species_external_links.json</code></a>
+    (Luke primary, Luontoportti secondary, FishBase tertiary). Baltic herring is not in that JSON list, so its section uses supplementary links below.
+    Published copy (GitHub Pages): <a href="https://captainkoukku.github.io/koukku-pages/fish-species-wfi.html">captainkoukku.github.io/koukku-pages/fish-species-wfi.html</a> — synced via <code>tool/sync_fish_wfi_to_koukku_pages.sh</code> and <code>.github/workflows/sync-koukku-pages-wfi-learning.yml</code>.
+  </p>
+</header>
+
+<nav class="toc" aria-labelledby="toc-heading">
+  <h2 id="toc-heading">Contents</h2>
+  <ul>
+    <li><a href="#ahven">Perch <span class="fi">(ahven)</span></a></li>
+    <li><a href="#hauki">Pike <span class="fi">(hauki)</span></a></li>
+    <li><a href="#kuha">Zander <span class="fi">(kuha)</span></a></li>
+    <li><a href="#lohi">Atlantic salmon <span class="fi">(lohi)</span></a></li>
+    <li><a href="#made">Burbot <span class="fi">(made)</span></a></li>
+    <li><a href="#siika">Whitefish <span class="fi">(siika)</span></a></li>
+    <li><a href="#silakka">Baltic herring <span class="fi">(silakka)</span></a></li>
+    <li><a href="#taimen">Brown trout <span class="fi">(taimen)</span></a></li>
+  </ul>
+</nav>
+
+<!-- Ahven / Perch -->
+<article class="species" id="ahven">
+  <h2>Perch <span class="fi">(ahven)</span></h2>
+  <p class="sci"><em>Perca fluviatilis</em> — European perch</p>
+  <p class="links">
+    <a href="https://www.luke.fi/fi/luonnonvaratieto/tiedetta-ja-tietoa/kalalajien-tunnistaminen/kaikki-kalalajit/ahven">Luke — species guide (FI)</a>
+    <a href="https://www.luontoportti.com/suomi/fi/kalat/ahven">Luontoportti (FI)</a>
+    <a href="https://www.fishbase.se/summary/Perca-fluviatilis">FishBase</a>
+  </p>
+  <figure>
+    <img src="assets/images/fish/perch.png" width="200" height="200" alt="Stylised perch reference art" />
+    <figcaption><code>assets/images/fish/perch.png</code></figcaption>
+  </figure>
+  <div class="body">
+    <p>
+      <span class="tag">Feeding</span>
+      A diurnal, shoaling visual predator: strike efficiency peaks at intermediate light—not deep shade and not harsh glare (Helfman 1981; Diehl 1988). The profile centres the main feeding window around <strong>midday and late afternoon</strong> (Jamet &amp; Lair 1991; Eriksson 1978).
+    </p>
+    <p>
+      <span class="tag">Temperature</span>
+      Perch tolerate warmth better than most other profiled species: aquaculture work reports growth optima near 23&nbsp;°C, while coastal wild recruitment is often strongest around 16–22&nbsp;°C at the surface. Above ~28&nbsp;°C fish retreat to cooler layers and feeding shuts down.
+    </p>
+    <p>
+      <span class="tag">Reproduction</span>
+      Spring spawning in the shallows: females deposit adhesive egg ribbons on submerged plants or rocks; males follow and fertilise. Eggs are tough, but cannibalism among larvae can be severe in dense populations (culture studies).
+    </p>
+    <p>
+      <span class="tag">WFI highlights</span>
+      A strong link to <strong>falling barometric pressure</strong> when feeding (percid pattern in Stoner 2004). <strong>No lunar term</strong> in the model (daylight sight-feeder; no peer-reviewed lunar feeding correlation in the profile notes). Cloud cover: broken sky (~10–50&nbsp;%) supports visual hunting.
+    </p>
+  </div>
+</article>
+
+<!-- Hauki / Pike -->
+<article class="species" id="hauki">
+  <h2>Pike <span class="fi">(hauki)</span></h2>
+  <p class="sci"><em>Esox lucius</em> — northern pike</p>
+  <p class="links">
+    <a href="https://www.luke.fi/fi/luonnonvaratieto/tiedetta-ja-tietoa/kalalajien-tunnistaminen/kaikki-kalalajit/hauki">Luke — species guide (FI)</a>
+    <a href="https://www.luontoportti.com/suomi/fi/kalat/hauki">Luontoportti (FI)</a>
+    <a href="https://www.fishbase.se/summary/Esox-lucius">FishBase</a>
+  </p>
+  <figure>
+    <img src="assets/images/fish/pike.png" width="200" height="200" alt="Stylised pike reference art" />
+    <figcaption><code>assets/images/fish/pike.png</code></figcaption>
+  </figure>
+  <div class="body">
+    <p>
+      <span class="tag">Feeding</span>
+      Pike are textbook <strong>ambush predators</strong>: they use cover and the contrast between prey silhouette and light. Hard sun reduces success (prey often spot the shadow first); solid overcast softens activity slightly. Light-to-moderate wind and chop disorient prey and cut surface glare—both favour pike (Lehtonen &amp; Niemelä 1986; Casselman &amp; Lewis 1996).
+    </p>
+    <p>
+      <span class="tag">Temperature</span>
+      Literature growth optima near 21–23&nbsp;°C; feeding tapers when warm surface water exceeds ~25&nbsp;°C. In winter and spring, feeding can stay steady from roughly 10&nbsp;°C upward (telemetry studies).
+    </p>
+    <p>
+      <span class="tag">Reproduction</span>
+      Spring flooded meadows and weedy shallows: females scatter batches of sticky eggs; males fertilise externally. Spawning sites are temperature- and oxygen-sensitive; vegetation gives fry cover.
+    </p>
+    <p>
+      <span class="tag">WFI highlights</span>
+      <strong>Dawn and dusk</strong> crepuscular peaks (Baktoft et al. 2012). <strong>Six-hour pressure fall</strong> carries the heaviest weight in the registry among these species (Stoner 2004 — piscivores). <strong>Wind and gust factor</strong> matter; moon is modest (weak literature, strong angling lore).
+    </p>
+  </div>
+</article>
+
+<!-- Kuha / Zander -->
+<article class="species" id="kuha">
+  <h2>Zander <span class="fi">(kuha)</span></h2>
+  <p class="sci"><em>Sander lucioperca</em> — pikeperch / zander</p>
+  <p class="links">
+    <a href="https://www.luke.fi/fi/luonnonvaratieto/tiedetta-ja-tietoa/kalalajien-tunnistaminen/kaikki-kalalajit/kuha">Luke — species guide (FI)</a>
+    <a href="https://www.luontoportti.com/suomi/fi/kalat/kuha">Luontoportti (FI)</a>
+    <a href="https://www.fishbase.se/summary/Sander-lucioperca">FishBase</a>
+  </p>
+  <figure>
+    <img src="assets/images/fish/pikeperch.png" width="200" height="200" alt="Stylised zander reference art" />
+    <figcaption><code>assets/images/fish/pikeperch.png</code></figcaption>
+  </figure>
+  <div class="body">
+    <p>
+      <span class="tag">Feeding</span>
+      Zander are <strong>low-light specialists</strong>: large pupils and a tapetum lucidum yield at least twice pike retinal sensitivity under the same conditions (Horppila et al. 2018). Strikes concentrate below ~1 lux (Bergman 1991). The profile therefore favours cloudy skies and a <strong>strong moon</strong> term—moonlight extends the feeding window.
+    </p>
+    <p>
+      <span class="tag">Behaviour</span>
+      Diel rhythm leans to <strong>evening, night, and around midnight</strong>: fish move up in the water column at dusk to hunt smelt, perch, and similar prey (Schulze et al. 2006). Calm water supports tight shoals; rough surface chop breaks them up (Pekcan-Hekim et al. 2010; Finnish catch-practice data cited in the profile).
+    </p>
+    <p>
+      <span class="tag">Reproduction</span>
+      Spawning often on sand or gravel bars and basin margins in spring; males guard eggs. Population density and lake trophic state strongly affect larval survival.
+    </p>
+    <p>
+      <span class="tag">WFI highlights</span>
+      Highest <strong>lunar</strong> weight of the major piscivores in the app; moderate solunar; falling pressure (percid signal, Stoner 2004). <strong>Water temperature</strong> optimum sits warmer than for salmonids.
+    </p>
+  </div>
+</article>
+
+<!-- Lohi / Atlantic salmon -->
+<article class="species" id="lohi">
+  <h2>Atlantic salmon <span class="fi">(lohi)</span></h2>
+  <p class="sci"><em>Salmo salar</em> — JSON label: salmon and lake salmon (<em>lohi ja järvilohi</em>)</p>
+  <p class="links">
+    <a href="https://www.luke.fi/fi/luonnonvaratieto/tiedetta-ja-tietoa/kalalajien-tunnistaminen/kaikki-kalalajit/lohi-ja-jarvilohi">Luke — species guide (FI)</a>
+    <a href="https://www.luontoportti.com/suomi/fi/kalat/lohi">Luontoportti (FI)</a>
+    <a href="https://www.fishbase.se/summary/Salmo-salar">FishBase</a>
+  </p>
+  <figure>
+    <img src="assets/images/fish/salmon.png" width="200" height="200" alt="Stylised salmonid reference art" />
+    <figcaption><code>assets/images/fish/salmon.png</code> — same in-app artwork as brown trout (salmonid brush style)</figcaption>
+  </figure>
+  <div class="body">
+    <p>
+      <span class="tag">Feeding</span>
+      Feeding in sea and river shifts with life stage. Upriver adults stress above ~20&nbsp;°C; migration can stall (Solomon &amp; Sambrook 2004; DFO). The profile stresses <strong>cool water</strong> (a lower optimum band than brown trout) and reduced surface light (Karppinen et al. 2002; sea-cage appetite work, Kadri et al. 1991).
+    </p>
+    <p>
+      <span class="tag">Behaviour</span>
+      <strong>Dawn-skewed</strong> activity versus a secondary dusk peak (parr gut-fullness and cage studies). In coastal angling, light chop can bunch baitfish and mask lure entry (Lacroix &amp; McCurdy 1996).
+    </p>
+    <p>
+      <span class="tag">Reproduction</span>
+      Autumn redds in gravelly riverbeds: females excavate a pit, eggs are buried in gravel. Sea-run fish home to natal streams; landlocked strains adapt to lakes.
+    </p>
+    <p>
+      <span class="tag">WFI highlights</span>
+      Six-hour pressure change is <strong>weak</strong> (Stoner 2004 found no strong salmonid barometric pattern). Moon and solunar are moderate (Vøllestad et al.; secondary migration cue in Solomon &amp; Sambrook 2004). Profile note: the folk rule “rising pressure = salmon” lacks peer-reviewed support and is flagged for calibration.
+    </p>
+  </div>
+</article>
+
+<!-- Made / Burbot -->
+<article class="species" id="made">
+  <h2>Burbot <span class="fi">(made)</span></h2>
+  <p class="sci"><em>Lota lota</em> — burbot</p>
+  <p class="links">
+    <a href="https://www.luke.fi/fi/luonnonvaratieto/tiedetta-ja-tietoa/kalalajien-tunnistaminen/kaikki-kalalajit/made">Luke — species guide (FI)</a>
+    <a href="https://www.luontoportti.com/suomi/fi/kalat/made">Luontoportti (FI)</a>
+    <a href="https://www.fishbase.se/summary/Lota-lota">FishBase</a>
+  </p>
+  <figure>
+    <div class="no-img" role="img" aria-label="No bundled image">No dedicated PNG in <code>assets/images/fish/</code> — the app falls back to a silhouette for burbot.</div>
+    <figcaption>To add art later: ship <code>made.png</code> and register it in <code>fish_species_image.dart</code>.</figcaption>
+  </figure>
+  <div class="body">
+    <p>
+      <span class="tag">Feeding</span>
+      Burbot are <strong>benthic and night-active</strong>: in summer, locomotor activity is roughly 180° out of phase with daylight—active at night; under polar-night winter, daytime activity can increase (Müller 1973). Shallow nocturnal excursions cluster at twilight (Harrison et al. 2013). Heavy cloud acts as a proxy for dimmer light reaching deep habitat.
+    </p>
+    <p>
+      <span class="tag">Temperature</span>
+      Bioenergetic growth stalls above ~18&nbsp;°C; thermal preferendum in the literature near 13&nbsp;°C. Burbot <strong>feed and move in the cold</strong>—winter spawning under ice at 0–4&nbsp;°C (Hofmann &amp; Fischer 2002; Cott et al. 2013).
+    </p>
+    <p>
+      <span class="tag">Reproduction</span>
+      Mid-winter spawning under ice; eggs develop slowly in cold, oxygen-rich water. Young stages are small benthic predators.
+    </p>
+    <p>
+      <span class="tag">WFI highlights</span>
+      The app’s <strong>highest lunar weight</strong> (nocturnal biology). Surface wind and gust factor are effectively irrelevant (deep benthic habitat). Pressure trend stays in the mix, but six-hour change is minimal—surface fronts damp with depth. Air-temperature weight is zero (water temperature dominates).
+    </p>
+  </div>
+</article>
+
+<!-- Siika / Whitefish -->
+<article class="species" id="siika">
+  <h2>Whitefish <span class="fi">(siika)</span></h2>
+  <p class="sci"><em>Coregonus lavaretus</em> — European whitefish (several morphs)</p>
+  <p class="links">
+    <a href="https://www.luke.fi/fi/luonnonvaratieto/tiedetta-ja-tietoa/kalalajien-tunnistaminen/kaikki-kalalajit/siika">Luke — species guide (FI)</a>
+    <a href="https://www.luontoportti.com/suomi/fi/kalat/siika">Luontoportti (FI)</a>
+    <a href="https://www.fishbase.se/summary/Coregonus-lavaretus">FishBase</a>
+  </p>
+  <figure>
+    <img src="assets/images/fish/whitefish.png" width="200" height="200" alt="Stylised whitefish reference art" />
+    <figcaption><code>assets/images/fish/whitefish.png</code></figcaption>
+  </figure>
+  <div class="body">
+    <p>
+      <span class="tag">Feeding</span>
+      Whitefish are <strong>planktivores and daytime visual feeders</strong>: stomach fullness peaks by day, partly under clear or partly cloudy skies; solid overcast can depress activity (Mookerji et al. 1998; Eckmann et al. 2002). They track diel zooplankton migrations (Mehner et al. 2005).
+    </p>
+    <p>
+      <span class="tag">Temperature</span>
+      Cold-stenothermal: sustained feeding commonly 7–14&nbsp;°C; above ~18&nbsp;°C fish drop deep (Wanzenböck et al. 2002). A stable thermocline matters—predictable shoal depth for pelagic feeding bouts.
+    </p>
+    <p>
+      <span class="tag">Reproduction</span>
+      Spawning on bottom or in deep basins depending on form; eggs need cold, oxygenated water. Finland hosts multiple morphs (sparse- vs dense-rakered) with different niches.
+    </p>
+    <p>
+      <span class="tag">WFI highlights</span>
+      <strong>Calm water</strong> and explicit <strong>gust sensitivity</strong> (waves disrupt thermocline and shoals). Midday feeding peak (Kahilainen et al. 2004). No lunar term (daytime planktivore). Six-hour pressure signal is weak—no coregonid barometer study found; wide neutral plateau.
+    </p>
+  </div>
+</article>
+
+<!-- Silakka / Baltic herring -->
+<article class="species" id="silakka">
+  <h2>Baltic herring <span class="fi">(silakka)</span></h2>
+  <p class="sci"><em>Clupea harengus membras</em> — Baltic herring</p>
+  <p class="links">
+    <a href="https://www.fishbase.se/summary/Clupea-harengus">FishBase</a>
+    <a href="https://en.wikipedia.org/wiki/Baltic_herring">Wikipedia (EN)</a>
+    <a href="https://fi.wikipedia.org/wiki/Silakka">Wikipedia (FI)</a>
+  </p>
+  <p class="links-note">Not listed in <code>species_external_links.json</code> (that file mirrors <code>kCommonFavouriteSpeciesIds</code> in <code>preferences_store.dart</code>). FishBase treats the nominal species; the Baltic form is subspecies <em>membras</em>.</p>
+  <figure>
+    <img src="assets/images/fish/herring.png" width="200" height="200" alt="Stylised herring reference art" />
+    <figcaption><code>assets/images/fish/herring.png</code></figcaption>
+  </figure>
+  <div class="body">
+    <p>
+      <span class="tag">Feeding</span>
+      Baltic herring are <strong>obligate schoolers</strong>: feeding and stomach fullness peak when surface irradiance is low (dusk, overcast) as zooplankton move up and herring follow (Cardinale et al. 2003). Moonlight extends near-surface feeding but less than for zander or burbot because school dynamics track copepod diel migration.
+    </p>
+    <p>
+      <span class="tag">Temperature</span>
+      Recruitment and feeding in the Baltic align with roughly 4–14&nbsp;°C surface water; feeding stalls below ~2&nbsp;°C; above ~16&nbsp;°C stocks often shift farther offshore (Rajasilta 1992; Cardinale et al. 2009).
+    </p>
+    <p>
+      <span class="tag">Reproduction</span>
+      Spring demersal spawning; timing and egg mass depend on food, condition, and environmental noise—year-classes are highly variable in the Baltic.
+    </p>
+    <p>
+      <span class="tag">WFI highlights</span>
+      <strong>Calm to light wind</strong> (Casini et al. 2006; Finnish trap-net practice). Evening plus post-midnight peaks. Moderate falling pressure during the dusk feeding window (Cardinale et al. 2003). Profile flagged as a calibration candidate blending coastal practice with peer-reviewed behaviour.
+    </p>
+  </div>
+</article>
+
+<!-- Taimen / Brown trout -->
+<article class="species" id="taimen">
+  <h2>Brown trout <span class="fi">(taimen)</span></h2>
+  <p class="sci"><em>Salmo trutta</em> — brown trout / sea trout</p>
+  <p class="links">
+    <a href="https://www.luke.fi/fi/luonnonvaratieto/tiedetta-ja-tietoa/kalalajien-tunnistaminen/kaikki-kalalajit/taimen">Luke — species guide (FI)</a>
+    <a href="https://www.luontoportti.com/suomi/fi/kalat/taimen">Luontoportti (FI)</a>
+    <a href="https://www.fishbase.se/summary/Salmo-trutta">FishBase</a>
+  </p>
+  <figure>
+    <img src="assets/images/fish/salmon.png" width="200" height="200" alt="Stylised salmonid reference art" />
+    <figcaption><code>assets/images/fish/salmon.png</code> — same bundled asset as Atlantic salmon in the app</figcaption>
+  </figure>
+  <div class="body">
+    <p>
+      <span class="tag">Feeding</span>
+      Brown trout are a <strong>cold-water salmonid</strong>: thermal preferendum near 12&nbsp;°C, growth strongest 13–17&nbsp;°C, feeding fades above ~19&nbsp;°C (Elliott &amp; Elliott 2010). In rivers and lakes, feeding is strongly <strong>dawn- and dusk-peaked</strong> with a deep midday lull (Ovidio et al. 1998; Bunnell et al. 2017). Light rain boosts invertebrate drift and terrestrial knock-down—the profile encodes a “light rain” window (Steingrímsson &amp; Gíslason 2002; Bachman 1984).
+    </p>
+    <p>
+      <span class="tag">Reproduction</span>
+      Autumn spawning on gravel in flowing water; lacustrine strains may use littoral zones. Sea-run (“sea trout”) migrations and spawning track flow and temperature regimes.
+    </p>
+    <p>
+      <span class="tag">WFI highlights</span>
+      <strong>Precipitation rate</strong> is included (Atlantic salmon has no equivalent precipitation trapezoid in the same form). Six-hour pressure change is broad and near-neutral (Stoner 2004 found no strong salmonid signal). Moon and solunar are moderate (Vøllestad et al.).
+    </p>
+  </div>
+</article>
+
+<footer>
+  <p>
+    Biology and WFI rationale: <code>lib/data/wfi_profiles.dart</code> (DOIs and authors in file comments).
+    Curated external links (Luke → Luontoportti → FishBase): <code>assets/data/species_external_links.json</code>.
+    In-repo preview: images use <code>assets/images/fish/</code> relative to this file. The GitHub Pages build rewrites those paths to <code>assets/images/fish/</code> at site root.
+  </p>
+  <p style="font-size: 0.85em; color: #888; margin-top: 0.5em;">
+    Last synced: 2026-05-13 — WFI engine v3-26 (12-component, skip-and-renormalise aggregation).
+  </p>
+</footer>
+
+</body>
+</html>
